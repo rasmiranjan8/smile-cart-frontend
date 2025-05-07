@@ -1,6 +1,6 @@
-import { Button, Input ,Toastr} from "neetoui";
+import { Button, Input, Toastr } from "neetoui";
+
 import { useRef } from "react";
-import { paths } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
 import { shallow } from "zustand/shallow";
 import useSelectedQuantity from "../hooks/useSelectedQuantity";
@@ -11,7 +11,7 @@ import { VALID_COUNT_REGEX } from "components/constants";
 const ProductQuantity = ({ slug, availableQuantity }) => {
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
   const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
-  const isNotValidQuantity = parsedSelectedQuantity >= availableQuantity;
+  const isNotValidQuantity = parsedSelectedQuantity > availableQuantity;
 
   const preventNavigation = e => {
     e.stopPropagation();
@@ -22,7 +22,9 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
 
   const handleSetCount = event => {
     const { value } = event.target;
-    const isNotValidInputQuantity = parseInt(value) > availableQuantity;
+    const parsedValue = parseInt(value);
+    const isNotValidInputQuantity =
+      isNaN(parsedValue) || parsedValue > availableQuantity;
 
     if (isNotValidInputQuantity) {
       Toastr.error(`Only ${availableQuantity} units are available`, {
@@ -43,7 +45,9 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         style="text"
         onClick={e => {
           preventNavigation(e);
-          setSelectedQuantity(parsedSelectedQuantity - 1);
+          if (parsedSelectedQuantity > 0) {
+            setSelectedQuantity(parsedSelectedQuantity - 1);
+          }
         }}
       />
       <Input
@@ -52,8 +56,9 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         contentSize="2"
         value={selectedQuantity}
         ref={countInputFocus}
-        onClick={() => {
-          handleSetCount(), preventNavigation();
+        onClick={e => {
+          handleSetCount(e);
+          preventNavigation(e);
         }}
       />
 
@@ -69,7 +74,9 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
           style="text"
           onClick={e => {
             preventNavigation(e);
-            setSelectedQuantity(parsedSelectedQuantity + 1);
+            if (parsedSelectedQuantity < availableQuantity) {
+              setSelectedQuantity(parsedSelectedQuantity + 1);
+            }
           }}
         />
       </TooltipWrapper>
