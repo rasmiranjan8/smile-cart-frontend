@@ -7,6 +7,8 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import initializeAxios from "apis/axios";
 import { ToastContainer } from "react-toastify";
+import "./common/i18n"
+
 
 initializeAxios();
 
