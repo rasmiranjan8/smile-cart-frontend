@@ -5,7 +5,7 @@ import Header from "components/Commons/Header";
 import PageLoader from "components/Commons/PageLoader";
 import PageNotFound from "components/Commons/PageNotFound";
 import AddToCart from "components/AddToCart";
-
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { Typography, Button } from "neetoui";
 import { append, isNotNil } from "ramda";
@@ -15,9 +15,8 @@ import routes from "routes";
 import Carousel from "./Carousel";
 
 const Product = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [product, setProduct] = useState({});
+
+  const { data: product = {}, isLoading, isError } = useShowProduct(slug);
 
   const { slug } = useParams();
 
@@ -66,7 +65,7 @@ const Product = () => {
         <div className="w-2/5">
           <div className="flex justify-center gap-16">
             {isNotNil(imageUrls) ? (
-              <Carousel imageUrls={append(imageUrl, imageUrls)} title={name} />
+              <Carousel />
             ) : (
               <img alt={name} className="w-48" src={imageUrl} />
             )}

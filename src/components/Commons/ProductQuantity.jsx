@@ -5,11 +5,14 @@ import useCartItemsStore from "stores/useCartItemsStore";
 import { shallow } from "zustand/shallow";
 import useSelectedQuantity from "../hooks/useSelectedQuantity";
 import TooltipWrapper from "./TooltipWrapper";
-
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { VALID_COUNT_REGEX } from "components/constants";
 
-const ProductQuantity = ({ slug, availableQuantity }) => {
+const ProductQuantity = ({ slug }) => {
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
+  const { data: product = {} } = useShowProduct(slug);
+
+  const { availableQuantity } = product;
   const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
   const isNotValidQuantity = parsedSelectedQuantity > availableQuantity;
 

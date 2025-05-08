@@ -1,11 +1,19 @@
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
+import { useParams } from "react-router-dom";
+import { append } from "ramda";
+
 import { useEffect, useState, useRef } from "react";
 
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
 
-const Carousel = ({ imageUrls, title }) => {
+const Carousel = () => {
+  const {slug}=useParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const timerRef = useRef(null);
+  const { data: { imageUrl, imageUrls: partialImageUrls, title } = {} } =
+    useShowProduct(slug);
+  const imageUrls = append(imageUrl, partialImageUrls);
 
   const handleNext = () => {
     const nextIndex = (currentIndex + 1) % imageUrls.length;
