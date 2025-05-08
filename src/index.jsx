@@ -1,3 +1,6 @@
+import { QueryClientProvider } from "react-query";
+import queryClient from "utils/queryClient";
+
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
@@ -7,18 +10,19 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import initializeAxios from "apis/axios";
 import { ToastContainer } from "react-toastify";
-import "./common/i18n"
-
+import "./common/i18n";
 
 initializeAxios();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ToastContainer />
-      <App />
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ToastContainer />
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
