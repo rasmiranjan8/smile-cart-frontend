@@ -1,3 +1,4 @@
+import i18n from "i18next";
 import { useEffect, useState } from "react";
 import PageLoader from "components/Commons/PageLoader";
 import productsApi from "apis/products";
@@ -10,6 +11,7 @@ import { cartTotalOf } from "components/utils";
 import ProductCard from "./ProductCard";
 import PriceCard from "./PriceCard";
 import { MRP, OFFER_PRICE } from "components/constants";
+import withTitle from "utils/withTitle";
 
 const Cart = () => {
   const { cartItems, setSelectedQuantity } = useCartItemsStore();
@@ -67,6 +69,7 @@ const Cart = () => {
   }
   return (
     <>
+
       <Header title="My Cart" />
       <div className="mt-10 flex justify-center space-x-10">
         <div className="w-1/3 space-y-5">
@@ -84,4 +87,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default withTitle(Cart, i18n.t("cart.title"));
