@@ -16,9 +16,9 @@ import Carousel from "./Carousel";
 
 const Product = () => {
 
-  const { data: product = {}, isLoading, isError } = useShowProduct(slug);
-
   const { slug } = useParams();
+
+  const { data: product = {}, isLoading, isError } = useShowProduct(slug);
 
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
@@ -26,12 +26,12 @@ const Product = () => {
     try {
       const response = await productsApi.show(slug);
       console.log("response is: ", response);
-      setProduct(response);
+      //setProduct(response);
     } catch (error) {
-      setIsError(true);
+      //setIsError(true);
       console.log("An error occurred:", error);
     } finally {
-      setIsLoading(false);
+      // Removed setIsLoading(false) because isLoading is managed by useShowProduct hook
     }
   };
 
