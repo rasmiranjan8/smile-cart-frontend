@@ -9,7 +9,10 @@ import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
 
 import { Form as NeetoUIForm } from "neetoui/formik";
 
-import { CHECKOUT_FORM_INITIAL_VALUES } from "./constants";
+import {
+  CHECKOUT_FORM_INITIAL_VALUES,
+  CHECKOUT_FORM_VALIDATION_SCHEMA,
+} from "./constants";
 import Form from "./Form";
 
 const Checkout = () => {
@@ -26,6 +29,7 @@ const Checkout = () => {
       formProps={{ noValidate: true }}
       formikProps={{
         initialValues: CHECKOUT_FORM_INITIAL_VALUES,
+        validationSchema: CHECKOUT_FORM_VALIDATION_SCHEMA,
       }}
     >
 
