@@ -41,5 +41,14 @@
     "stateRequired": "State is required",
     "zipCodeRequired": "Zip code is required",
     "emailInvalid": "Email address is invalid"
+  },
+  "confirmOrder": "Confirm order",
+  "error": {
+    "noInternetConnection": "No Internet Connection",
+    "networkError": "Network Error"
+  },
+
+  "order": {
+    "successfullyPlaced": "Order has been successfully placed"
   }
 }

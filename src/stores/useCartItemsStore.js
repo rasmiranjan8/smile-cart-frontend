@@ -20,6 +20,7 @@ const useCartItemsStore = create(
         set(({ cartItems }) => ({
           cartItems: dissoc(slug, cartItems),
         })),
+      clearCart: () => set({ cartItems: {} }),
     }),
     { name: "cart-items-store" }
   )
