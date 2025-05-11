@@ -50,5 +50,9 @@
 
   "order": {
     "successfullyPlaced": "Order has been successfully placed"
-  }
+  },
+  "subtotal": "Subtotal <span>${{totalPrice}}</span>",
+  "totalPayablePrice": "Total Payable <span>${{totalPrice}}</span>",
+  "deliveryCharges": "Delivery charges <span>FREE</span>",
+  "saveInformationForNextTime": "Save this information for next time"
 }

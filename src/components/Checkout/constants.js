@@ -39,3 +39,5 @@ export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
     .required(t("validations.stateRequired")),
   zipCode: yup.number().required(t("validations.zipCodeRequired")),
 });
+
+export const CHECKOUT_LOCAL_STORAGE_KEY = "checkoutUserDetails";

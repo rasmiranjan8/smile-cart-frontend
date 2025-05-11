@@ -1,4 +1,4 @@
-import { assoc, dissoc, evolve } from "ramda";
+import { assoc, dissoc } from "ramda";
 import { create } from "zustand";
 import { isNotEmpty } from "neetocist";
 import { persist } from "zustand/middleware";

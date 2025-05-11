@@ -1,11 +1,11 @@
 import i18n from "i18next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PageLoader from "components/Commons/PageLoader";
 import productsApi from "apis/products";
 import Header from "components/Commons/Header";
 import { keys, isEmpty } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
-import { shallow } from "zustand/shallow";
+
 import { Toastr, NoData } from "neetoui";
 import { cartTotalOf } from "components/utils";
 import ProductCard from "./ProductCard";
@@ -13,6 +13,7 @@ import PriceCard from "./PriceCard";
 import { MRP, OFFER_PRICE } from "components/constants";
 import withTitle from "utils/withTitle";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
   const { cartItems, setSelectedQuantity } = useCartItemsStore();
@@ -22,7 +23,7 @@ const Cart = () => {
 
   const totalMrp = cartTotalOf(products, MRP);
   const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);
-
+  const { t } = useTranslation();
   const fetchCartProducts = async () => {
     try {
       const responses = await Promise.all(
@@ -65,7 +66,6 @@ const Cart = () => {
   }
   return (
     <>
-
       <Header title="My Cart" />
       <div className="mt-10 flex justify-center space-x-10">
         <div className="w-1/3 space-y-5">
