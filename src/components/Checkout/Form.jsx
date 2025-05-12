@@ -1,13 +1,13 @@
-import { Typography } from "neetoui";
+import React from "react";
 
-import { useTranslation } from "react-i18next";
 import { useFormikContext } from "formik";
 import {
   useFetchStates,
   useFetchCountries,
 } from "hooks/reactQuery/useCheckoutApi";
-
+import { Typography } from "neetoui";
 import { Input, Select } from "neetoui/formik";
+import { useTranslation } from "react-i18next";
 
 const Form = () => {
   const { t } = useTranslation();

@@ -1,19 +1,20 @@
-import i18n from "i18next";
-import { useEffect } from "react";
-import PageLoader from "components/Commons/PageLoader";
+import { React, useEffect } from "react";
+
 import productsApi from "apis/products";
 import Header from "components/Commons/Header";
-import { keys, isEmpty } from "ramda";
-import useCartItemsStore from "stores/useCartItemsStore";
-
-import { Toastr, NoData } from "neetoui";
-import { cartTotalOf } from "components/utils";
-import ProductCard from "./ProductCard";
-import PriceCard from "./PriceCard";
+import PageLoader from "components/Commons/PageLoader";
 import { MRP, OFFER_PRICE } from "components/constants";
-import withTitle from "utils/withTitle";
+import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
+import i18n from "i18next";
+import { Toastr, NoData } from "neetoui";
+import { keys, isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
+import useCartItemsStore from "stores/useCartItemsStore";
+import withTitle from "utils/withTitle";
+
+import PriceCard from "./PriceCard";
+import ProductCard from "./ProductCard";
 
 const Cart = () => {
   const { cartItems, setSelectedQuantity } = useCartItemsStore();
@@ -51,7 +52,7 @@ const Cart = () => {
 
   useEffect(() => {
     fetchCartProducts();
-  }, [cartItems]);
+  });
   if (isLoading) return <PageLoader />;
 
   if (isEmpty(products)) {
@@ -64,6 +65,7 @@ const Cart = () => {
       </>
     );
   }
+
   return (
     <>
       <Header title="My Cart" />

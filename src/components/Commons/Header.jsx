@@ -1,10 +1,12 @@
+import React from "react";
+
 import { LeftArrow } from "neetoicons";
 import { Typography } from "neetoui";
-import { useHistory, Link } from "react-router-dom";
+import { keys } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useHistory, Link } from "react-router-dom";
 import routes from "routes";
 import useCartItemsStore from "stores/useCartItemsStore";
-import { keys } from "ramda";
 
 const Header = ({ title, shouldShowBackButton = true, actionBlock }) => {
   const history = useHistory();

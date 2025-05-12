@@ -1,20 +1,22 @@
-import { Typography, Spinner, Input, NoData } from "neetoui";
-import { Search } from "neetoicons";
+import { React, useEffect, useState } from "react";
+
 import productsApi from "apis/products";
-import { useEffect, useState, useContext } from "react";
-import ProductListItem from "./ProductListItem";
 import Header from "components/Commons/Header";
-import useDebounce from "hooks/useDebounce";
-import { isEmpty, without, mergeLeft } from "ramda";
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
-import { Pagination } from "neetoui";
-import { useHistory } from "react-router-dom/";
-import useQueryParams from "hooks/useQueryParams";
-import { buildUrl } from "utils/url";
-import routes from "routes";
+import useDebounce from "hooks/useDebounce";
 import { filterNonNull } from "neetocist";
 import useFuncDebounce from "hooks/useFuncDebounce";
+import useQueryParams from "hooks/useQueryParams";
+import { Search } from "neetoicons";
+import { Spinner, Input, NoData, Pagination } from "neetoui";
+import { isEmpty, mergeLeft } from "ramda";
+import { useHistory } from "react-router-dom/";
+import routes from "routes";
+import { buildUrl } from "utils/url";
+
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
+import ProductListItem from "./ProductListItem";
+
 const ProductList = () => {
   const history = useHistory();
   const queryParams = useQueryParams();
@@ -45,6 +47,7 @@ const ProductList = () => {
     page: Number(page) || DEFAULT_PAGE_INDEX,
     pageSize: Number(pageSize) || DEFAULT_PAGE_SIZE,
   };
+
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
     useFetchProducts(productsParams);
 
@@ -63,16 +66,17 @@ const ProductList = () => {
       // setIsLoading(false); // Removed because setIsLoading is not defined
     }
   };
+
   useEffect(() => {
     fetchProducts();
-  }, [debouncedSearchKey]);
+  });
 
   if (isLoading) {
     return (
       <>
         <Header
-          title="Smile cart"
           shouldShowBackButton={false}
+          title="Smile cart"
           actionBlock={
             <Input
               placeholder="Search products"
@@ -89,44 +93,43 @@ const ProductList = () => {
       </>
     );
   }
+
   return (
-    <>
-      <div className="flex h-screen flex-col">
-        <Header
-          title="Smile cart"
-          shouldShowBackButton={false}
-          actionBlock={
-            <Input
-              placeholder="Search products"
-              prefix={<Search />}
-              type="search"
-              value={searchKey}
-              onChange={({ target: { value } }) => {
-                updateQueryParams(value);
-                setSearchKey(value);
-              }}
-            />
-          }
-        />
-        {isEmpty(products) ? (
-          <NoData className="h-full w-full" title="No products to show" />
-        ) : (
-          <div className="grid grid-cols-2 justify-items-center gap-y-8 p-4 md:grid-cols-3 lg:grid-cols-4">
-            {products.map(product => (
-              <ProductListItem key={product.slug} {...product} />
-            ))}
-          </div>
-        )}
-        <div className="mb-5 self-end">
-          <Pagination
-            count={totalProductsCount || 0}
-            navigate={handlePageNavigation}
-            pageNo={Number(page) || DEFAULT_PAGE_INDEX}
-            pageSize={Number(pageSize) || DEFAULT_PAGE_SIZE}
+    <div className="flex h-screen flex-col">
+      <Header
+        shouldShowBackButton={false}
+        title="Smile cart"
+        actionBlock={
+          <Input
+            placeholder="Search products"
+            prefix={<Search />}
+            type="search"
+            value={searchKey}
+            onChange={({ target: { value } }) => {
+              updateQueryParams(value);
+              setSearchKey(value);
+            }}
           />
+        }
+      />
+      {isEmpty(products) ? (
+        <NoData className="h-full w-full" title="No products to show" />
+      ) : (
+        <div className="grid grid-cols-2 justify-items-center gap-y-8 p-4 md:grid-cols-3 lg:grid-cols-4">
+          {products.map(product => (
+            <ProductListItem key={product.slug} {...product} />
+          ))}
         </div>
+      )}
+      <div className="mb-5 self-end">
+        <Pagination
+          count={totalProductsCount || 0}
+          navigate={handlePageNavigation}
+          pageNo={Number(page) || DEFAULT_PAGE_INDEX}
+          pageSize={Number(pageSize) || DEFAULT_PAGE_SIZE}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

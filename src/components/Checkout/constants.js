@@ -1,5 +1,6 @@
 import { t } from "i18next";
 import * as yup from "yup";
+
 export const CHECKOUT_FORM_INITIAL_VALUES = {
   email: "",
   country: { code: "US", name: "United States" },

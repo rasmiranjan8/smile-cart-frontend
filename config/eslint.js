@@ -16,21 +16,21 @@ module.exports = {
     "plugin:json/recommended",
     "eslint:recommended",
     "plugin:react/recommended",
-    "./.eslint-rules/globals",
-    "./.eslint-rules/imports/order",
-    "./.eslint-rules/overrides",
+    "../.eslint-rules/globals", // Corrected path
+    "../.eslint-rules/imports/order", // Corrected path
+    "../.eslint-rules/overrides", // Corrected path
     // ensure that you don't add custom rules
     // without taking permission from team leads.
-    "./.eslint-rules/custom",
+    "../.eslint-rules/custom", // Corrected path
     // custom rules cannot override the following rules.
-    "./.eslint-rules/imports/enforced",
-    "./.eslint-rules/react",
-    "./.eslint-rules/promise",
+    "../.eslint-rules/imports/enforced", // Corrected path
+    "../.eslint-rules/react", // Corrected path
+    "../.eslint-rules/promise", // Corrected path
     "prettier",
   ],
   settings: {
     react: {
-      version: "detect",
+      version: "detect", // Automatically detect the React version
     },
     // We need this for the import/extensions rule to work: https://github.com/import-js/eslint-plugin-import#importextensions
     "import/resolver": {
@@ -40,6 +40,8 @@ module.exports = {
     },
   },
   parserOptions: {
+    // babel-eslint is deprecated now. This is the latest package.
+    requireConfigFile: false, // Disable Babel config file requirement
     babelOptions: {
       presets: [
         ["babel-preset-react-app", false],
@@ -47,12 +49,11 @@ module.exports = {
       ],
     },
     ecmaFeatures: {
-      jsx: true,
+      jsx: true, // Enable JSX parsing
     },
-    ecmaVersion: 2018,
-    sourceType: "module",
+    ecmaVersion: 2018, // Support ECMAScript 2018 syntax
+    sourceType: "module", // Use ES modules
   },
-  // babel-eslint is deprecated now. This is the latest package.
   parser: "@babel/eslint-parser",
   plugins: [
     "react",

@@ -1,7 +1,7 @@
+import React from "react";
+
 import { Button } from "neetoui";
-import { isNil, paths } from "ramda";
-import useCartItemsStore from "stores/useCartItemsStore";
-import { shallow } from "zustand/shallow";
+import { isNil } from "ramda";
 
 import ProductQuantity from "./Commons/ProductQuantity";
 import useSelectedQuantity from "./hooks/useSelectedQuantity";

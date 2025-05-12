@@ -1,7 +1,8 @@
+import { React, memo } from "react";
+
+import AddToCart from "components/AddToCart";
 import { Typography } from "neetoui";
 import { Link } from "react-router-dom";
-import AddToCart from "components/AddToCart";
-import { memo } from "react";
 
 const ProductListItem = ({
   imageUrl,

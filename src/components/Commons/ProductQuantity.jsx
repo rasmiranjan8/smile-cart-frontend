@@ -1,12 +1,12 @@
+import { React, useRef } from "react";
+
+import { VALID_COUNT_REGEX } from "components/constants";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Button, Input, Toastr } from "neetoui";
 
-import { useRef } from "react";
-import useCartItemsStore from "stores/useCartItemsStore";
-import { shallow } from "zustand/shallow";
-import useSelectedQuantity from "../hooks/useSelectedQuantity";
 import TooltipWrapper from "./TooltipWrapper";
-import { useShowProduct } from "hooks/reactQuery/useProductsApi";
-import { VALID_COUNT_REGEX } from "components/constants";
+
+import useSelectedQuantity from "../hooks/useSelectedQuantity";
 
 const ProductQuantity = ({ slug }) => {
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
@@ -54,15 +54,15 @@ const ProductQuantity = ({ slug }) => {
         }}
       />
       <Input
-        nakedInput
-        // className="ml-2"
-        contentSize="2"
-        value={selectedQuantity}
         ref={countInputFocus}
+        value={selectedQuantity}
         onClick={e => {
           handleSetCount(e);
           preventNavigation(e);
         }}
+        nakedInput
+        // className="ml-2"
+        contentSize="2"
       />
 
       <TooltipWrapper

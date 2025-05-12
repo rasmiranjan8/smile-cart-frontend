@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Spinner } from "neetoui";
 
 const PageLoader = () => (

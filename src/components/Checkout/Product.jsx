@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Typography, Tag } from "neetoui";
 import useCartItemsStore from "stores/useCartItemsStore";
 

@@ -1,11 +1,11 @@
 import { QUERY_KEYS } from "constants/query";
-import { useQuery } from "react-query";
+
 import productsApi from "apis/products";
-import { useQueries } from "react-query";
+import { Toastr } from "neetoui";
 import { any, prop } from "ramda";
 import { useTranslation } from "react-i18next";
+import { useQuery, useQueries } from "react-query";
 import useCartItemsStore from "stores/useCartItemsStore";
-import { Toastr } from "neetoui";
 
 export const useShowProduct = slug =>
   useQuery({

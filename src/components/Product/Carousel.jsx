@@ -1,11 +1,9 @@
+import { React, useEffect, useState, useRef } from "react";
+
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
-import { useParams } from "react-router-dom";
-import { append } from "ramda";
-
-import { useEffect, useState, useRef } from "react";
-
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
+import { useParams } from "react-router-dom";
 
 const Carousel = () => {
   const { slug } = useParams();
@@ -37,12 +35,12 @@ const Carousel = () => {
     resetTimer();
 
     return () => clearInterval(timerRef.current);
-  }, []);
+  });
 
   useEffect(() => {
     // Reset timer whenever currentIndex changes (user interaction)
     resetTimer();
-  }, [currentIndex]);
+  }, [currentIndex, resetTimer]);
 
   return (
     <div className="flex flex-col items-center space-y-2">

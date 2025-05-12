@@ -1,9 +1,10 @@
+import { React, useState } from "react";
+
 import ProductQuantity from "components/Commons/ProductQuantity";
-import { Typography, Alert } from "neetoui";
 import { Delete } from "neetoicons";
+import { Typography, Alert } from "neetoui";
 import { prop } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
-import { useState, useEffect } from "react";
 
 const ProductCard = ({
   slug,

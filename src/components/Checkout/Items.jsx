@@ -1,3 +1,5 @@
+import React from "react";
+
 import { OFFER_PRICE } from "components/constants";
 import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";

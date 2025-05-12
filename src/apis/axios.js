@@ -1,8 +1,7 @@
 import axios from "axios";
-import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { t } from "i18next";
+import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
-
 import { evolve } from "ramda";
 
 const transformResponseKeysToCamelCase = response => {

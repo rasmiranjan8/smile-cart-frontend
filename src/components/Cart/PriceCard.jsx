@@ -1,10 +1,11 @@
-import { Trans } from "react-i18next";
-import { useTranslation } from "react-i18next";
+import React from "react";
+
 import classNames from "classnames";
 import { Typography, Button } from "neetoui";
 import { gt, keys } from "ramda";
-import useCartItemsStore from "stores/useCartItemsStore";
+import { useTranslation, Trans } from "react-i18next";
 import routes from "routes";
+import useCartItemsStore from "stores/useCartItemsStore";
 
 const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const { t } = useTranslation();

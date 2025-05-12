@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { React, useEffect } from "react";
 
 import productsApi from "apis/products";
+import AddToCart from "components/AddToCart";
 import Header from "components/Commons/Header";
 import PageLoader from "components/Commons/PageLoader";
 import PageNotFound from "components/Commons/PageNotFound";
-import AddToCart from "components/AddToCart";
-import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Typography, Button } from "neetoui";
 import { isNotNil } from "ramda";
 import { useParams } from "react-router-dom";
@@ -33,7 +33,7 @@ const Product = () => {
 
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [fetchProduct]);
 
   const {
     name,

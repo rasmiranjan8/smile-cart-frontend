@@ -1,26 +1,31 @@
+import { React, useState, useRef } from "react";
+
+import PageLoader from "components/Commons/PageLoader";
+import {
+  useFetchCountries,
+  useCreateOrder,
+} from "hooks/reactQuery/useCheckoutApi";
+import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import i18n from "i18next";
 import { LeftArrow } from "neetoicons";
 import { Typography, Checkbox } from "neetoui";
+import { Form as NeetoUIForm } from "neetoui/formik";
+import { keys, isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import withTitle from "utils/withTitle";
-import PageLoader from "components/Commons/PageLoader";
-import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
-import { useState, useRef } from "react";
-import { Form as NeetoUIForm } from "neetoui/formik";
+import routes from "routes";
 import useCartItemsStore from "stores/useCartItemsStore";
-import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
+import { setToLocalStorage, getFromLocalStorage } from "utils/storage";
+import withTitle from "utils/withTitle";
+
 import {
   CHECKOUT_FORM_INITIAL_VALUES,
   CHECKOUT_FORM_VALIDATION_SCHEMA,
   CHECKOUT_LOCAL_STORAGE_KEY,
 } from "./constants";
-import { useCreateOrder } from "hooks/reactQuery/useCheckoutApi";
 import Form from "./Form";
-import routes from "routes";
+
 import Items from "./Items";
-import { keys, isEmpty } from "ramda";
-import { setToLocalStorage, getFromLocalStorage } from "utils/storage";
 
 const Checkout = () => {
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
@@ -45,6 +50,7 @@ const Checkout = () => {
       clearCart();
     }, 1500);
   };
+
   const handleRedirect = () => {
     if (timerRef.current) {
       history.push(routes.root);
@@ -54,6 +60,7 @@ const Checkout = () => {
       history.goBack();
     }
   };
+
   const handleSubmit = values => {
     const dataToPersist = checkboxRef.current.checked ? values : null;
     setIsSubmitDisabled(true);
@@ -69,13 +76,15 @@ const Checkout = () => {
     );
   };
   if (isLoading) return <PageLoader />;
+
   if (isEmpty(cartItems)) return history.push(routes.root);
+
   return (
     <NeetoUIForm
       formProps={{ noValidate: true }}
       formikProps={{
         initialValues: checkoutFormData || CHECKOUT_FORM_INITIAL_VALUES,
-        initialValues: CHECKOUT_FORM_INITIAL_VALUES,
+
         validationSchema: CHECKOUT_FORM_VALIDATION_SCHEMA,
         onSubmit: handleSubmit,
       }}
