@@ -11,4 +11,3 @@ const useFuncDebounce = func => {
 };
 
 export default useFuncDebounce;
-

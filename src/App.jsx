@@ -5,7 +5,7 @@ import ProductList from "./components/ProductList";
 import Product from "./components/Product";
 import PageNotFound from "./components/Commons/PageNotFound";
 import routes from "routes";
-import Cart from "./components/Cart"
+import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 const App = () => {
   return (

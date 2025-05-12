@@ -1,4 +1,4 @@
-import {Trans} from "react-i18next"
+import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Typography, Button } from "neetoui";
@@ -7,7 +7,7 @@ import useCartItemsStore from "stores/useCartItemsStore";
 import routes from "routes";
 
 const PriceCard = ({ totalMrp, totalOfferPrice }) => {
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const totalDiscounts = totalMrp - totalOfferPrice;
   const isDiscountPresent = gt(totalDiscounts, 0);
   const discountPercentage = ((totalDiscounts / totalMrp) * 100).toFixed(1);
@@ -21,7 +21,11 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
           "line-through": isDiscountPresent,
         })}
       >
-        <Trans components={{ typography: <span /> }} i18nKey="totalMrp" values={{ mrp: totalMrp }} />
+        <Trans
+          components={{ typography: <span /> }}
+          i18nKey="totalMrp"
+          values={{ mrp: totalMrp }}
+        />
       </Typography>
       {isDiscountPresent && (
         <>

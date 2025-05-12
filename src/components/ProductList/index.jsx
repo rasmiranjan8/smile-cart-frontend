@@ -22,7 +22,6 @@ const ProductList = () => {
   const [searchKey, setSearchKey] = useState(searchTerm);
   const debouncedSearchKey = useDebounce(searchKey);
 
-
   const updateQueryParams = useFuncDebounce(value => {
     const params = {
       page: DEFAULT_PAGE_INDEX,

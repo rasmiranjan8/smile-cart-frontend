@@ -1,4 +1,4 @@
-import {  useEffect } from "react";
+import { useEffect } from "react";
 
 import productsApi from "apis/products";
 import Header from "components/Commons/Header";
@@ -8,14 +8,13 @@ import AddToCart from "components/AddToCart";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { Typography, Button } from "neetoui";
-import {  isNotNil } from "ramda";
+import { isNotNil } from "ramda";
 import { useParams } from "react-router-dom";
 import routes from "routes";
 
 import Carousel from "./Carousel";
 
 const Product = () => {
-
   const { slug } = useParams();
 
   const { data: product = {}, isLoading, isError } = useShowProduct(slug);
@@ -26,12 +25,9 @@ const Product = () => {
     try {
       const response = await productsApi.show(slug);
       console.log("response is: ", response);
-
     } catch (error) {
-
       console.log("An error occurred:", error);
     } finally {
-
     }
   };
 
@@ -48,7 +44,7 @@ const Product = () => {
     imageUrl,
     availableQuantity,
   } = product;
-  console.log("image url in product page are:",imageUrl,imageUrls)
+  console.log("image url in product page are:", imageUrl, imageUrls);
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
 
@@ -65,7 +61,7 @@ const Product = () => {
         <div className="w-2/5">
           <div className="flex justify-center gap-16">
             {isNotNil(imageUrls) ? (
-              <Carousel  />
+              <Carousel />
             ) : (
               <img alt={name} className="w-48" src={imageUrl} />
             )}

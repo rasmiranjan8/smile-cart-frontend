@@ -19,7 +19,7 @@ const ProductListItem = ({
       {name}
     </Typography>
     <Typography>${offerPrice}</Typography>
-    <AddToCart {...{slug,availableQuantity}} />
+    <AddToCart {...{ slug, availableQuantity }} />
   </Link>
 );
 

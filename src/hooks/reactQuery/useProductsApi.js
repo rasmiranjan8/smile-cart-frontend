@@ -20,8 +20,8 @@ export const useFetchProducts = params =>
     // enabled: !!params.searchTerm, // Disabled to always fetch products
   });
 export const useFetchCartProducts = slugs => {
- const { t } = useTranslation();
- const { cartItems, setSelectedQuantity } = useCartItemsStore();
+  const { t } = useTranslation();
+  const { cartItems, setSelectedQuantity } = useCartItemsStore();
   const responses = useQueries(
     slugs.map(slug => ({
       queryKey: [QUERY_KEYS.PRODUCTS, slug],

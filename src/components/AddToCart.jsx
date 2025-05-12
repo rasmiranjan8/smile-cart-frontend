@@ -7,7 +7,7 @@ import ProductQuantity from "./Commons/ProductQuantity";
 import useSelectedQuantity from "./hooks/useSelectedQuantity";
 
 const AddToCart = ({ slug, availableQuantity }) => {
-   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
   const handleClick = e => {
     e.stopPropagation();
@@ -19,7 +19,7 @@ const AddToCart = ({ slug, availableQuantity }) => {
     return <Button label="Add to cart" size="large" onClick={handleClick} />;
   }
 
-  return <ProductQuantity {...{ slug, availableQuantity }} />;;
+  return <ProductQuantity {...{ slug, availableQuantity }} />;
 };
 
 export default AddToCart;

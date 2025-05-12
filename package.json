@@ -119,8 +119,7 @@
   "eslintConfig": {
     "parser": "@babel/eslint-parser",
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "./config/eslint.js"
     ]
   },
   "browserslist": {

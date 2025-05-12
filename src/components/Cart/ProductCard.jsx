@@ -15,7 +15,7 @@ const ProductCard = ({
 }) => {
   const removeCartItem = useCartItemsStore(prop("removeCartItem"));
   const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
-  
+
   return (
     <div className="neeto-ui-rounded neeto-ui-border-black border p-2">
       <div className="flex w-full items-center space-x-5">
